@@ -35,7 +35,14 @@ if ! grep -q "GOPATH=\$HOME/go" "$HOME/.bash_profile"; then
   echo "export GOPATH=\$HOME/go" >> "$HOME/.bash_profile"
 fi
 
-# Source .bash_profile
+# Ensure .bash_profile exists
+[ ! -f ~/.bash_profile ] && touch ~/.bash_profile
+
+# Add Go binary directories to PATH and create ~/go/bin directory
+echo "export PATH=\$PATH:/usr/local/go/bin:~/go/bin" >> ~/.bash_profile
+[ ! -d ~/go/bin ] && mkdir -p ~/go/bin
+
+# Source .bash_profile to apply changes
 source "$HOME/.bash_profile"
 
 # Display Go version
