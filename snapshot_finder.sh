@@ -14,7 +14,7 @@ urls=(
 for url in "${urls[@]}"; do
     if curl -s --head "$url" | head -n 1 | grep "200" > /dev/null; then
         # If the URL returns status 200, download and extract the archive
-        if curl "$url" | lz4 -dc - | tar -xf - -C "$HOME/$DIRECTORY"; then
+        if curl "$url" | lz4 -dc - | tar -xf - -C "$DIRECTORY"; then
             echo "Download and extraction successful from: $url"
             # Exit loop since download was successful
             break
