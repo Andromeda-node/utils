@@ -27,7 +27,7 @@ for (( ; ; )); do
     height=$($BINARY status --node="tcp://127.0.0.1:$PORT_RPC" 2>&1 | jq -r '.SyncInfo.latest_block_height // .sync_info.latest_block_height')
   fi
   if ((height >= TARGET_BLOCK)); then
-    bash <(curl -s https://raw.githubusercontent.com/Andromeda-node/utils/main/blockheight_upgrade/warden_upgrade.sh)
+    bash <(curl -s https://raw.githubusercontent.com/Andromeda-node/utils/main/blockheight_upgrade/oraichain_upgrade.sh)
     printCyan "Your node was successfully upgraded to version: $VERSION" && sleep 1
     $BINARY version --long | head
     break
